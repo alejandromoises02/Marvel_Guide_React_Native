@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
 import { COLORS } from '../constants/color'
 
 const RenderItem = ({ item }) => {
@@ -19,7 +19,7 @@ const RenderItem = ({ item }) => {
 
 
   return (
-    <View style={styles.RenderItem}>
+    <ScrollView style={styles.RenderItem}>
       <Image
         style={styles.image}
         source={{
@@ -31,7 +31,7 @@ const RenderItem = ({ item }) => {
         <Text style={styles.title}>{description}</Text>
         <Text></Text>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
