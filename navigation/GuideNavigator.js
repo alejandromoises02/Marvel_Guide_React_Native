@@ -54,9 +54,9 @@ const GuideNavigator = () => (
       />
       <Stack.Screen
         name={ROUTES.Detail}
-        options={({ route }) => ({
-          title: route.params.name
-        })}
+        options={{
+          title: "Detail",
+        }}
         component={DetailScreen}
       />
     </Stack.Navigator>

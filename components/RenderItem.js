@@ -4,11 +4,19 @@ import { COLORS } from '../constants/color'
 
 const RenderItem = ({ item }) => {
 
-  const urlImage = item.thumbnail && `${item.thumbnail.path}/standard_xlarge.${item.thumbnail.extension}`;
+  const urlImage = item.thumbnail && `${item.thumbnail.path}/portrait_uncanny.${item.thumbnail.extension}`;
 
-  const description = item.description === ""
+  const description = !item.description
   ?'Description not available'
   :item.description;
+
+  let title = "";
+
+  if (item.pageCount) title = `${item.title} (${item.pageCount}pages)`; //format title for comic
+  else if (item.start) title = `${item.title} ${item.start}-${item.end}`;//format title for events
+  else if (item.startYear) title = `${item.title} ${item.startYear}-${item.endYear}`;//format title for series
+  else title = item.title;//format title for characters
+
 
   return (
     <View style={styles.RenderItem}>
@@ -19,7 +27,9 @@ const RenderItem = ({ item }) => {
         }}
       />
       <View style={styles.titleContainer}>
+      <Text style={styles.title}>{title}</Text>
         <Text style={styles.title}>{description}</Text>
+        <Text></Text>
       </View>
     </View>
   );
@@ -51,7 +61,7 @@ const styles = StyleSheet.create({
   image: {
     alignSelf: "center",
     width: 300,
-    height: 300,
+    height: 450,
     borderRadius: 8,
     marginBottom: 20,
   }

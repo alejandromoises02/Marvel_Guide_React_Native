@@ -17,10 +17,8 @@ const ListScreen = ({ navigation }) => {
   
   const dispatch = useDispatch();
   const categoryID = useSelector((state) => state.categories.selectedID);
-
-  useEffect(() => {
-    dispatch(selectList(categoryID));
-  }, []);
+  dispatch(selectList(categoryID));
+ 
 
   const list = useSelector((state) => state.list.list);
 

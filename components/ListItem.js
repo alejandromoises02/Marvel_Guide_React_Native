@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    fontSize: 20,
+    fontSize: 25,
     fontFamily: 'SFComicScript',
     color: 'white',
   },
