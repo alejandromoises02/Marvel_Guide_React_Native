@@ -12,7 +12,10 @@ import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 
 //Navigator
-import GuideNavigator from "./navigation/GuideNavigator";
+import TabNavigator from "./navigation/tab/TabNavigator";
+
+//background
+import { BACK_IMAGE } from './constants/backImage'
 
 export default function App() {
   const [loaded] = useFonts({
@@ -26,7 +29,9 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <GuideNavigator />
+      <ImageBackground source={BACK_IMAGE} resizeMode="cover" style={styles.image}>
+      <TabNavigator />
+      </ImageBackground>
     </Provider>
   );
 }
@@ -36,6 +41,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
+    justifyContent: "center"
+  },
+  image: {
+    flex: 1,
     justifyContent: "center"
   }
 });

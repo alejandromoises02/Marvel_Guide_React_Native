@@ -4,14 +4,14 @@ import { FlatList, StyleSheet, ImageBackground } from "react-native";
 
 //redux
 import { useSelector, useDispatch } from "react-redux";
-import { selectList } from "../store/actions/list.actions";
-import { selectItem } from "../store/actions/list.actions";
+import { selectList } from "../../store/actions/list.actions";
+import { selectItem } from "../../store/actions/list.actions";
 
 //components
-import ListItem from "../components/ListItem";
+import ListItem from "../../components/ListItem";
 
 //constants
-import { BACK_IMAGE } from "../constants/backImage";
+import { BACK_IMAGE } from "../../constants/backImage";
 
 const ListScreen = ({ navigation }) => {
   

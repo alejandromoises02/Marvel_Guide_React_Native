@@ -4,13 +4,13 @@ import { StyleSheet, ImageBackground } from "react-native";
 
 //redux
 import { useSelector, useDispatch } from "react-redux";
-import { filteredItem } from "../store/actions/item.actions";
+import { filteredItem } from "../../store/actions/item.actions";
 
 //components
-import RenderItem from "../components/RenderItem";
+import RenderItem from "../../components/RenderItem";
 
 //constants
-import { BACK_IMAGE } from "../constants/backImage";
+import { BACK_IMAGE } from "../../constants/backImage";
 
 const DetailScreen = ({ navigation }) => {
   const dispatch = useDispatch();
