@@ -18,7 +18,8 @@ export default function App() {
   const [loaded] = useFonts({
     ComicBook: require("./assets/fonts/Comic_Book.otf"),
     SFComicScript: require("./assets/fonts/SF_Comic_Script.ttf"),
-    Badaboom: require("./assets/fonts/badaboom.ttf")
+    Badaboom: require("./assets/fonts/badaboom.ttf"),
+    Roboto: require("./assets/fonts/Roboto-Light.ttf")
   });
 
   if (!loaded) return <AppLoading />;

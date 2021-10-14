@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
+import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from "react-native";
 import { COLORS } from '../constants/color'
 
 const RenderItem = ({ item }) => {
@@ -11,11 +11,28 @@ const RenderItem = ({ item }) => {
   :item.description;
 
   let title = "";
+  let buttonTitle = ""
 
-  if (item.pageCount) title = `${item.title} (${item.pageCount}pages)`; //format title for comic
-  else if (item.start) title = `${item.title} ${item.start}-${item.end}`;//format title for events
-  else if (item.startYear) title = `${item.title} ${item.startYear}-${item.endYear}`;//format title for series
-  else title = item.title;//format title for characters
+  if (item.pageCount){
+    //format title for comic
+    title = `${item.title} (${item.pageCount}pages)`;
+    buttonTitle = `See Related Characters`;
+  } 
+  else if (item.start){
+    //format title for events
+    title = `${item.title} ${item.start}-${item.end}`;
+    buttonTitle = `See Related Comics`;
+  }
+  else if (item.startYear){
+    //format title for series
+    title = `${item.title} ${item.startYear}-${item.endYear}`;
+    buttonTitle = `See Related Comics`;
+  } 
+  else{
+    //format title for characters
+    title = item.title;
+    buttonTitle = `See Related Comics`;
+  }
 
 
   return (
@@ -28,8 +45,8 @@ const RenderItem = ({ item }) => {
       />
       <View style={styles.titleContainer}>
       <Text style={styles.title}>{title}</Text>
-        <Text style={styles.title}>{description}</Text>
-        <Text></Text>
+        <Text style={styles.description}>{description}</Text>
+        <TouchableOpacity><Text>{buttonTitle}</Text></TouchableOpacity>
       </View>
     </ScrollView>
   );
@@ -54,14 +71,19 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   title: {
-    fontSize: 20,
+    fontSize: 25,
     fontFamily: "SFComicScript",
+    color: "white"
+  },
+  description: {
+    fontSize: 20,
+    fontFamily: "Roboto",
     color: "white"
   },
   image: {
     alignSelf: "center",
     width: 300,
-    height: 450,
+    height: 400,
     borderRadius: 8,
     marginBottom: 20,
   }

@@ -13,6 +13,7 @@ export const selectItem = (itemID) =>{
 
 
 export const selectList = (categoryID) => {
+  console.log("selectList");
   let list = [];
   if (categoryID !== undefined) {
     return (dispatch) => {
@@ -22,6 +23,7 @@ export const selectList = (categoryID) => {
         )
           .then((response) => response.json())
           .then((data) => {
+            console.log(data);
             const result = data.data.results;
             let filteredList = result.filter(
               (item) =>
