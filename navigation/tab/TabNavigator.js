@@ -23,7 +23,8 @@ const TabNavigator = () => (
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
-        tabBarBackground: () => <BlurView tint="light" intensity={80} />
+        tabBarBackground: () => <BlurView tint="light" intensity={80} />,
+        tabBarStyle: styles.tabBar ,
       }}
     >
       <BottomTabs.Screen
@@ -35,7 +36,7 @@ const TabNavigator = () => (
               <Ionicons
                 name="md-book"
                 size={24}
-                color={COLORS.redThirdMarvel}
+                color='white'
               />
               <Text style={styles.titleIcon}>Guide</Text>
             </View>
@@ -51,7 +52,7 @@ const TabNavigator = () => (
               <Ionicons
                 name="md-bookmarks"
                 size={24}
-                color={COLORS.redThirdMarvel}
+                color='white'
               />
               <Text style={styles.titleIcon}>Favorites</Text>
             </View>
@@ -67,7 +68,7 @@ const TabNavigator = () => (
               <Ionicons
                 name="md-person-circle"
                 size={24}
-                color={COLORS.redThirdMarvel}
+                color='white'
               />
               <Text style={styles.titleIcon}>User</Text>
             </View>
@@ -86,8 +87,13 @@ const styles = StyleSheet.create({
   },
   titleIcon: {
     fontFamily: "Badaboom",
-    color: COLORS.redThirdMarvel
-  }
+    color: 'white'
+  },
+  tabBar: {
+    backgroundColor:COLORS.redMarvel,
+  },
+
+
 });
 
 export default TabNavigator;

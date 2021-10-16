@@ -1,5 +1,5 @@
 //native
-import React, { useEffect } from "react";
+import React, { useCallback } from "react";
 import { FlatList, StyleSheet, ImageBackground } from "react-native";
 
 //redux
@@ -13,16 +13,22 @@ import ListItem from "../../components/ListItem";
 //constants
 import { BACK_IMAGE } from "../../constants/backImage";
 
+//navigation
+import { useFocusEffect } from '@react-navigation/native';
+
 const ListScreen = ({ navigation }) => {
   
   const dispatch = useDispatch();
   const categoryID = useSelector((state) => state.categories.selectedID);
 
-  useEffect(() => {
-    dispatch(selectList(categoryID));
-  }, [categoryID])
+  useFocusEffect(
+    useCallback(() => {
+      dispatch(selectList(categoryID));
+
+      return () => dispatch(selectList());
+    }, [categoryID])
+  );
   
- 
 
   const list = useSelector((state) => state.list.list);
 

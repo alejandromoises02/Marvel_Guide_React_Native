@@ -1,7 +1,7 @@
 //Native
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, ImageBackground } from "react-native";
+import { StyleSheet } from "react-native";
 
 //redux
 import { Provider } from "react-redux";
@@ -12,10 +12,21 @@ import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 
 //Navigator
+import MainNavigator from './navigation';
 import TabNavigator from "./navigation/tab/TabNavigator";
 
 //background
-import { BACK_IMAGE } from './constants/backImage'
+import { COLORS } from "./constants/color";
+
+//db
+import { init } from './db';
+
+init()
+  .then(() => console.log('Database initialized'))
+  .catch(err => {
+    console.log('Database failed to connect');
+    console.log(err.message);
+  })
 
 export default function App() {
   const [loaded] = useFonts({
@@ -28,10 +39,8 @@ export default function App() {
   if (!loaded) return <AppLoading />;
 
   return (
-    <Provider store={store}>
-      <ImageBackground source={BACK_IMAGE} resizeMode="cover" style={styles.image}>
+    <Provider store={store} >
       <TabNavigator />
-      </ImageBackground>
     </Provider>
   );
 }
@@ -39,7 +48,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: COLORS.redMarvel,
     alignItems: "center",
     justifyContent: "center"
   },

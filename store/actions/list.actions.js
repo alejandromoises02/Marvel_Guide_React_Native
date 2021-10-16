@@ -23,7 +23,6 @@ export const selectList = (categoryID) => {
         )
           .then((response) => response.json())
           .then((data) => {
-            console.log(data);
             const result = data.data.results;
             let filteredList = result.filter(
               (item) =>
