@@ -1,5 +1,6 @@
 import React, { useReducer, useEffect } from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
+import { COLORS } from '../constants/color';
 
 const INPUT_CHANGE = 'INPUT_CHANGE';
 const INPUT_BLUR = 'INPUT_BLUR';
@@ -76,8 +77,10 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   label: {
+    alignSelf:'center',
     fontFamily: 'ComicBook',
     marginVertical: 8,
+    color:COLORS.redMarvel
   },
   input: {
     paddingHorizontal: 2,

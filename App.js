@@ -13,7 +13,6 @@ import AppLoading from "expo-app-loading";
 
 //Navigator
 import MainNavigator from './navigation';
-import TabNavigator from "./navigation/tab/TabNavigator";
 
 //background
 import { COLORS } from "./constants/color";
