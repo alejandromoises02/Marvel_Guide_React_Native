@@ -1,5 +1,4 @@
-import { SELECT_ITEM } from '../actions/list.actions';
-import { SELECT_LIST } from '../actions/list.actions';
+import { SELECT_LIST,SELECT_ITEM,ADD_ITEM_LIST } from '../actions/list.actions';
 
 const initialState = {
     list: [],
@@ -18,6 +17,11 @@ const ListReducer = (state = initialState, action) =>{
                 state,
                 list: action.list,
             }
+        case ADD_ITEM_LIST:
+            return {
+                state,
+                list: [...state.list, ...action.list],
+            };
         default:
             return state;
     }

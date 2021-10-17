@@ -16,8 +16,6 @@ const FavoritesScreen = ({ navigation }) => {
     useCallback(() => {
       fetchFavorite()
     .then(result => setFavorites(result.rows._array));
-
-      return () => console.log("salio de favoritos");
     }, [])
   );
 

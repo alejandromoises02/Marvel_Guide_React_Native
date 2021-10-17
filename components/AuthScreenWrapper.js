@@ -7,7 +7,7 @@ const AuthScreenWrapper = ({ children, title, message, buttonText, buttonPath })
   const navigation = useNavigation();
   return (
     <KeyboardAvoidingView
-      behavior="height"
+      
       style={styles.screen}
     >
       <View style={styles.container}>

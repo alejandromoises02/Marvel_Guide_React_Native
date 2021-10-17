@@ -1,11 +1,10 @@
 //native
-import React, { useCallback } from "react";
+import React, { useCallback, useState,useRef  } from "react";
 import { FlatList, StyleSheet, ImageBackground } from "react-native";
 
 //redux
 import { useSelector, useDispatch } from "react-redux";
-import { selectList } from "../../store/actions/list.actions";
-import { selectItem } from "../../store/actions/list.actions";
+import { selectList,addItemList,selectItem } from "../../store/actions/list.actions";
 
 //components
 import ListItem from "../../components/ListItem";
@@ -21,6 +20,11 @@ const ListScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const categoryID = useSelector((state) => state.categories.selectedID);
 
+  const [page, setPage] = useState(1);
+  //const [list, setList] = useState([])
+  //let page = 0;
+  let list = useSelector((state) => state.list.list);
+
   useFocusEffect(
     useCallback(() => {
       dispatch(selectList(categoryID));
@@ -30,14 +34,17 @@ const ListScreen = ({ navigation }) => {
   );
   
 
-  const list = useSelector((state) => state.list.list);
-
   const handleSelected = (item) => {
     dispatch(selectItem(item.id));
     navigation.navigate("Detail", {
       name: item.title
     });
   };
+
+  const LoadMoreData = () =>{
+    setPage(page + 1);
+    dispatch(addItemList(categoryID,page));
+    }
 
   const renderItemList = ({ item }) => (
     <ListItem item={item} onSelected={handleSelected} />
@@ -53,6 +60,8 @@ const ListScreen = ({ navigation }) => {
         data={list}
         keyExtractor={(item) => item.id.toString()}
         renderItem={renderItemList}
+        onEndReachedThreshold={0.5}
+        onEndReached={()=>LoadMoreData()}
       />
     </ImageBackground>
   );

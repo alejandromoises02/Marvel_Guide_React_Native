@@ -2,6 +2,7 @@ import { URL_BASE_API, API_KEY_PUBLIC, HASH } from "../../constants/marvelApi";
 
 export const  SELECT_LIST = "SELECT_LIST";
 export const  SELECT_ITEM = "SELECT_ITEM";
+export const  ADD_ITEM_LIST = "ADD_ITEM_LIST";
 
 export const selectItem = (itemID) =>{
   return ({
@@ -13,13 +14,12 @@ export const selectItem = (itemID) =>{
 
 
 export const selectList = (categoryID) => {
-  console.log("selectList");
   let list = [];
   if (categoryID !== undefined) {
     return (dispatch) => {
       try {
         fetch(
-          `${URL_BASE_API}${categoryID}?limit=40&ts=1&apikey=${API_KEY_PUBLIC}&hash=${HASH}`
+          `${URL_BASE_API}${categoryID}?limit=20&offset=0&ts=1&apikey=${API_KEY_PUBLIC}&hash=${HASH}`
         )
           .then((response) => response.json())
           .then((data) => {
@@ -56,4 +56,40 @@ export const selectList = (categoryID) => {
       });
     };
   }
+};
+
+export const addItemList = (categoryID, page) => {
+  let list = [];
+    return (dispatch) => {
+      try {
+        fetch(
+          `${URL_BASE_API}${categoryID}?limit=20&offset=${page * 20}&ts=1&apikey=${API_KEY_PUBLIC}&hash=${HASH}`
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            const result = data.data.results;
+            let filteredList = result.filter(
+              (item) =>
+                item.thumbnail.path !==
+                "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available"
+            );//items without thumbnail are discarded
+            list = filteredList.map((item) => {
+              let { id, title, name, thumbnail } = item;
+              if (name != undefined && title == undefined) title = name;
+              const urlImage = `${thumbnail.path}/standard_medium.${thumbnail.extension}`
+              return {
+                id,
+                title,
+                urlImage
+              };
+            });
+            dispatch({
+              type: ADD_ITEM_LIST,
+              list,
+            });
+          });
+      } catch (e) {
+        console.log(e.message);
+      }
+    };
 };
