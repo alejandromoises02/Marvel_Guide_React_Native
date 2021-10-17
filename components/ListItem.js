@@ -17,7 +17,7 @@ const ListItem = ({ item, onSelected }) => {
       <Image
         style={styles.logo}
         source={{
-          uri: `${item.thumbnail.path}/standard_medium.${item.thumbnail.extension}`,
+          uri: item.urlImage,
         }}
       />
         <View style={styles.titleContainer}><Text style={styles.title}>{item.title}</Text></View>

@@ -32,10 +32,11 @@ export const selectList = (categoryID) => {
             list = filteredList.map((item) => {
               let { id, title, name, thumbnail } = item;
               if (name != undefined && title == undefined) title = name;
+              const urlImage = `${thumbnail.path}/standard_medium.${thumbnail.extension}`
               return {
                 id,
                 title,
-                thumbnail
+                urlImage
               };
             });
             dispatch({

@@ -1,38 +1,32 @@
 import React, { useCallback, useState } from "react";
 import { FlatList, StyleSheet, ImageBackground, Text } from "react-native";
 
-import { useFocusEffect } from "@react-navigation/native";
-import { fetchAddresses } from "../../db";
+//navigation
+import { useFocusEffect } from '@react-navigation/native';
+
+import { fetchFavorite } from '../../db/index'
 import { BACK_IMAGE } from "../../constants/backImage";
 import ListItem from "../../components/ListItem";
 
-const FavoritesScreen = () => {
-  const [favorites, setFavorites] = useState([]);
-  const [favorites2, setFavorites2] = useState([]);
+const FavoritesScreen = ({ navigation }) => {
+  const [favorites, setFavorites] = useState([])
+
 
   useFocusEffect(
     useCallback(() => {
-      const result = fetchAddresses();
-      result.then((data) => {
-        setFavorites2(data.rows._array);
-        console.log(favorites2);
-        if(favorites2.length > 0){
-            const urlImage = favorites2.urlImager.split(".");
-            const thumbnail={
-                path:urlImage[0],
-                extension: urlImage[1],
-            }
-            setFavorites2(...favorites2, thumbnail)
-            console.log(favorites2);
-        }
-        
-      });
+      fetchFavorite()
+    .then(result => setFavorites(result.rows._array));
+
+      return () => console.log("salio de favoritos");
     }, [])
   );
 
-  const handleSelected = (item) => {
-    console.log("ver item");
-  };
+  
+    const handleSelected = (item) => {
+      navigation.navigate('FavoriteDetail', {
+        item
+      });
+    } 
 
   const renderItemList = ({ item }) => (
     <ListItem item={item} onSelected={handleSelected} />

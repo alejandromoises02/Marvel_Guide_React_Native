@@ -17,7 +17,6 @@ import { COLORS } from "../../constants/color";
 const BottomTabs = createBottomTabNavigator();
 
 const TabNavigator = () => (
-  <NavigationContainer>
     <BottomTabs.Navigator
       initialRouteName="Guide"
       screenOptions={{
@@ -76,7 +75,6 @@ const TabNavigator = () => (
         }}
       />
     </BottomTabs.Navigator>
-  </NavigationContainer>
 );
 
 const styles = StyleSheet.create({

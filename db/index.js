@@ -21,13 +21,12 @@ export const init = () => {
   });
 }
 
-export const insertAddress = ( id, title, urlImage, description, buttonTitle, categoryID ) => {
-  console.log(title);
+export const insertFavorite = ( item ) => {
   return new Promise((resolve, reject) => {
     db.transaction((tx) => {
       tx.executeSql(
         'INSERT INTO favorite ( id, title, urlImage, description, buttonTitle, categoryID) VALUES (?, ?, ?, ?, ?, ?)',
-        [id, title, urlImage, description, buttonTitle, categoryID],
+        [item.id, item.title, item.urlImage, item.description, item.buttonTitle, item.categoryID],
         (_, result) => resolve(result),
         (_, error) => reject(error),
       )
@@ -35,7 +34,7 @@ export const insertAddress = ( id, title, urlImage, description, buttonTitle, ca
   })
 }
 
-export const fetchAddresses = () => {
+export const fetchFavorite = () => {
   return new Promise((resolve, reject) => {
     db.transaction((tx) => {
       tx.executeSql(

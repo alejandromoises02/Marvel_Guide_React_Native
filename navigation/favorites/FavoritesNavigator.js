@@ -7,6 +7,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 //Screens
 import FavoritesScreen from '../../screens/favorites/FavoritesScreen'
+import FavoriteDetailScreen from '../../screens/favorites/FavoriteDetailScreen'
 
 //Colors
 import { COLORS } from "../../constants/color";
@@ -15,6 +16,7 @@ const Stack = createNativeStackNavigator();
 
 const ROUTES = {
   FavoritesItems: "FavoritesItems",
+  FavoriteDetail:"FavoriteDetail"
 };
 
 const FavoritesNavigator = () => (
@@ -38,6 +40,13 @@ const FavoritesNavigator = () => (
         }}
         component={FavoritesScreen}
       />
+      <Stack.Screen
+      name={ROUTES.FavoriteDetail}
+      options={{
+        title: "Detail"
+      }}
+      component={FavoriteDetailScreen}
+    />
     </Stack.Navigator>
 );
 

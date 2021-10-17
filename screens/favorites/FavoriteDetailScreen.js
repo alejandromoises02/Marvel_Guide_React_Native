@@ -1,11 +1,6 @@
 //native
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { StyleSheet, ImageBackground, Alert } from "react-native";
-
-//redux
-import { useSelector, useDispatch } from "react-redux";
-import { filteredItem } from "../../store/actions/item.actions";
-import { clearItem } from "../../store/actions/item.actions";
 
 //components
 import RenderItem from "../../components/RenderItem";
@@ -20,22 +15,12 @@ import { Ionicons } from "@expo/vector-icons";
 //sql
 import { insertFavorite, fetchFavorite } from "../../db";
 
-const DetailScreen = ({ navigation }) => {
-  const dispatch = useDispatch();
-  const categoryID = useSelector((state) => state.categories.selectedID);
-  const itemID = useSelector((state) => state.list.selectedID);
-  const item = useSelector((state) => state.item.item);
+const FavoriteDetailScreen = ({ navigation, route }) => {
+
+  const item = route.params.item;
 
   const [favoritesMark, setFavoritesMark] = useState(false);
   const [iconName, setIconName] = useState("md-bookmark-outline");
-
-  useEffect(() => {
-    dispatch(filteredItem(categoryID, itemID));
-
-    return () => {
-      dispatch(clearItem());
-    };
-  }, []);
 
   const handlerAddFavorite = () => {
     if (!favoritesMark) {
@@ -94,4 +79,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default DetailScreen;
+export default FavoriteDetailScreen;
