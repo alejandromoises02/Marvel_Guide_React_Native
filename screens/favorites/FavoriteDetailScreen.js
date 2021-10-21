@@ -1,60 +1,12 @@
 //native
 import React, { useLayoutEffect, useState } from "react";
 import { StyleSheet, ImageBackground, Alert } from "react-native";
-
 //components
-import RenderItem from "../../components/RenderItem";
-
+import DetailComponent from "../../components/DetailComponent";
 //constants
 import { BACK_IMAGE } from "../../constants/backImage";
-import { COLORS } from "../../constants/color";
-
-//navigation
-import { Ionicons } from "@expo/vector-icons";
-
-//sql
-import { insertFavorite, fetchFavorite, deleteFavorite } from "../../db";
-
 const FavoriteDetailScreen = ({ navigation, route }) => {
   const item = route.params.item;
-
-  const [favoritesMark, setFavoritesMark] = useState(false);
-  const [iconName, setIconName] = useState("md-bookmark-outline");
-
-  const handlerAddFavorite = () => {
-    if (!favoritesMark) {
-      insertFavorite(item);
-      setFavoritesMark(true);
-    } else {
-      deleteFavorite(item.id)
-        .then((data) => console.log(data))
-        .catch((e) => {
-          console.log(e);
-        });
-      setFavoritesMark(false);
-    }
-  };
-
-  useLayoutEffect(() => {
-    let favorites = [];
-    fetchFavorite().then((result) => {
-      favorites = result.rows._array;
-      setFavoritesMark(favorites.some((favorite) => favorite.id == item.id));
-      if (favoritesMark) setIconName("md-bookmark");
-      else setIconName("md-bookmark-outline");
-    });
-
-    navigation.setOptions({
-      headerRight: () => (
-        <Ionicons
-          name={iconName}
-          size={24}
-          color="white"
-          onPress={() => handlerAddFavorite()}
-        />
-      )
-    });
-  }, [navigation, item, favoritesMark, iconName]);
 
   return (
     <ImageBackground
@@ -62,7 +14,7 @@ const FavoriteDetailScreen = ({ navigation, route }) => {
       resizeMode="cover"
       style={styles.container}
     >
-      <RenderItem item={item} />
+      <DetailComponent item={item} />
     </ImageBackground>
   );
 };
@@ -71,12 +23,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center"
-  },
-  button: {
-    alignSelf: "center",
-    fontSize: 30,
-    fontFamily: "Badaboom",
-    color: COLORS.redSecondMarvel
   }
 });
 

@@ -6,7 +6,6 @@ export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
 
 export const signup = (email, password, name) => {
-  console.log("signup");
   return async (dispatch) => {
     const response = await fetch(URL_AUTH_API, {
       method: "POST",
@@ -47,7 +46,6 @@ export const signup = (email, password, name) => {
 };
 
 export const login = (email, password) => {
-  console.log("login");
   return async (dispatch) => {
     const response = await fetch(URL_LOGIN_API, {
       method: "POST",
@@ -88,7 +86,6 @@ export const login = (email, password) => {
 };
 
 export const initAuthentication = () => {
-  console.log("init");
   return async (dispatch) => {
     const token = await AsyncStorage.getItem("@token");
     const userId = await AsyncStorage.getItem("@userId");
@@ -106,7 +103,6 @@ export const initAuthentication = () => {
 };
 
 export const logout = () => {
-  console.log("logout");
   return async (dispatch) => {
     await AsyncStorage.removeItem("@token");
     await AsyncStorage.removeItem("@userId");
