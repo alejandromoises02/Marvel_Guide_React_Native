@@ -14,7 +14,7 @@ const RegisterScreen = () => {
   const [formState, formDispatch] = useReducer(formReducer, {
     inputValues: {
       email: "",
-      password: ""
+      password: "",
     },
     inputValidities: {
       email: false,

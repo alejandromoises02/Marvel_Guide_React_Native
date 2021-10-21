@@ -1,14 +1,26 @@
-import React from "react";
+import React, {useEffect,useCallback} from "react";
 import { FlatList, StyleSheet, ImageBackground } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import GridList from "../../components/GridList";
 import { selectCategory } from "../../store/actions/category.actions";
 import { BACK_IMAGE } from "../../constants/backImage";
+import { clearList } from "../../store/actions/list.actions";
+import { useFocusEffect } from "@react-navigation/native";
 
 const GuideScreen = ({ navigation }) => {
 
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.categories.list);
+
+  /*useEffect(() => {
+    dispatch(clearList());
+  }, [])*/
+
+  useFocusEffect(
+    useCallback(() => {
+      dispatch(clearList());
+    }, [])
+  );
 
   const handleSelectedCategory = (category) => {
     dispatch(selectCategory(category.id));

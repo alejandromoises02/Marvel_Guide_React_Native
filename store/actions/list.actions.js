@@ -1,8 +1,10 @@
 import { URL_BASE_API, API_KEY_PUBLIC, HASH } from "../../constants/marvelApi";
 
-export const  SELECT_LIST = "SELECT_LIST";
-export const  SELECT_ITEM = "SELECT_ITEM";
-export const  ADD_ITEM_LIST = "ADD_ITEM_LIST";
+export const SELECT_LIST = "SELECT_LIST";
+export const SELECT_ITEM = "SELECT_ITEM";
+export const ADD_ITEM_LIST = "ADD_ITEM_LIST";
+export const SET_SEARCH_LIST = "SET_SEARCH_LIST";
+export const CLEAR_LIST = "CLEAR_LIST";
 
 export const selectItem = (itemID) =>{
   return ({
@@ -11,15 +13,38 @@ export const selectItem = (itemID) =>{
 })
 }
 
+export const selectSearchList = (search) =>{
+  return ({
+  type: SET_SEARCH_LIST,
+  payload: search,
+})
+}
+
+export const clearList = () => {
+  return {
+    type: CLEAR_LIST,
+    list: [],
+    selectedID: null,
+    search: ""
+  };
+};
 
 
-export const selectList = (categoryID) => {
+export const selectList = (categoryID, startSearch) => {
   let list = [];
+  let search = "";
+  if (startSearch != "") {
+    search =
+      categoryID == "characters" || categoryID == "events"
+        ? `nameStartsWith=${startSearch}&`
+        : `titleStartsWith=${startSearch}&`;
+  }
+
   if (categoryID !== undefined) {
     return (dispatch) => {
       try {
         fetch(
-          `${URL_BASE_API}${categoryID}?limit=20&offset=0&ts=1&apikey=${API_KEY_PUBLIC}&hash=${HASH}`
+          `${URL_BASE_API}${categoryID}?${search}limit=20&offset=0&ts=1&apikey=${API_KEY_PUBLIC}&hash=${HASH}`
         )
           .then((response) => response.json())
           .then((data) => {
@@ -28,11 +53,11 @@ export const selectList = (categoryID) => {
               (item) =>
                 item.thumbnail.path !==
                 "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available"
-            );//items without thumbnail are discarded
+            ); //items without thumbnail are discarded
             list = filteredList.map((item) => {
               let { id, title, name, thumbnail } = item;
               if (name != undefined && title == undefined) title = name;
-              const urlImage = `${thumbnail.path}/standard_medium.${thumbnail.extension}`
+              const urlImage = `${thumbnail.path}/standard_medium.${thumbnail.extension}`;
               return {
                 id,
                 title,
@@ -41,7 +66,7 @@ export const selectList = (categoryID) => {
             });
             dispatch({
               type: SELECT_LIST,
-              list,
+              list
             });
           });
       } catch (e) {
@@ -52,44 +77,55 @@ export const selectList = (categoryID) => {
     return (dispatch) => {
       dispatch({
         type: SELECT_LIST,
-        list: [],
+        list: []
       });
     };
   }
 };
 
-export const addItemList = (categoryID, page) => {
+export const addItemList = (categoryID, startSearch, page) => {
   let list = [];
-    return (dispatch) => {
-      try {
-        fetch(
-          `${URL_BASE_API}${categoryID}?limit=20&offset=${page * 20}&ts=1&apikey=${API_KEY_PUBLIC}&hash=${HASH}`
-        )
-          .then((response) => response.json())
-          .then((data) => {
-            const result = data.data.results;
-            let filteredList = result.filter(
-              (item) =>
-                item.thumbnail.path !==
-                "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available"
-            );//items without thumbnail are discarded
-            list = filteredList.map((item) => {
-              let { id, title, name, thumbnail } = item;
-              if (name != undefined && title == undefined) title = name;
-              const urlImage = `${thumbnail.path}/standard_medium.${thumbnail.extension}`
-              return {
-                id,
-                title,
-                urlImage
-              };
-            });
-            dispatch({
-              type: ADD_ITEM_LIST,
-              list,
-            });
+
+  let search = "";
+  if (startSearch != "") {
+    search =
+      categoryID == "characters" || categoryID == "events"
+        ? `nameStartsWith=${startSearch}&`
+        : `titleStartsWith=${startSearch}&`;
+  }
+
+  return (dispatch) => {
+    try {
+      fetch(
+        `${URL_BASE_API}${categoryID}?${search}limit=20&offset=${
+          page * 20
+        }&ts=1&apikey=${API_KEY_PUBLIC}&hash=${HASH}`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          const result = data.data.results;
+          let filteredList = result.filter(
+            (item) =>
+              item.thumbnail.path !==
+              "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available"
+          ); //items without thumbnail are discarded
+          list = filteredList.map((item) => {
+            let { id, title, name, thumbnail } = item;
+            if (name != undefined && title == undefined) title = name;
+            const urlImage = `${thumbnail.path}/standard_medium.${thumbnail.extension}`;
+            return {
+              id,
+              title,
+              urlImage
+            };
           });
-      } catch (e) {
-        console.log(e.message);
-      }
-    };
+          dispatch({
+            type: ADD_ITEM_LIST,
+            list
+          });
+        });
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
 };

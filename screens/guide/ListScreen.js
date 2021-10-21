@@ -1,27 +1,23 @@
 //native
-import React, { useCallback, useState, useLayoutEffect } from "react";
+import React, { useCallback, useState, useLayoutEffect, useEffect } from "react";
 import {
-  View,
-  Button,
-  Text,
   FlatList,
   StyleSheet,
   ImageBackground,
-  TouchableOpacity
 } from "react-native";
 //redux
 import { useSelector, useDispatch } from "react-redux";
 import {
   selectList,
   addItemList,
-  selectItem
+  selectItem,
+  selectSearchList
 } from "../../store/actions/list.actions";
 //components
 import ListItem from "../../components/ListItem";
-import Input from "../../components/Input";
+import InputSearch from "../../components/InputSearch";
 //constants
 import { BACK_IMAGE } from "../../constants/backImage";
-import { COLORS } from "../../constants/color";
 //navigation
 import { useFocusEffect } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
@@ -29,18 +25,16 @@ import { Ionicons } from "@expo/vector-icons";
 const ListScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const categoryID = useSelector((state) => state.categories.selectedID);
+  const list = useSelector((state) => state.list.list);
+  const inputSearch = useSelector((state) => state.list.search);
 
   const [activeSearch, setActiveSearch] = useState(false);
-  const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
-  let list = useSelector((state) => state.list.list);
 
   useFocusEffect(
     useCallback(() => {
-      dispatch(selectList(categoryID));
-
-      return () => dispatch(selectList());
-    }, [categoryID])
+      dispatch(selectList(categoryID,inputSearch));
+    }, [categoryID,inputSearch])
   );
 
   const handlerSearch = () => {
@@ -69,16 +63,18 @@ const ListScreen = ({ navigation }) => {
 
   const LoadMoreData = () => {
     setPage(page + 1);
-    dispatch(addItemList(categoryID, page));
+    dispatch(addItemList(categoryID, inputSearch, page));
   };
 
   const renderItemList = ({ item }) => (
     <ListItem item={item} onSelected={handleSelected} />
   );
 
-  const onInputChangeHandler = () => {};
-
-  const handleSearch = () => {};
+  const onHandleSearch = text => {
+    dispatch(selectList(categoryID , text));
+    setActiveSearch(false);
+    dispatch(selectSearchList(text));
+  };
 
   return (
     <ImageBackground
@@ -87,21 +83,11 @@ const ListScreen = ({ navigation }) => {
       style={styles.image}
     >
       {activeSearch ? (
-        <View style={styles.containerSearch}>
-          <Input
-            id="Search"
-            label="Enter what you want to search"
-            keyboardType="default"
-            autoCapitalize="none"
-            text
-            onInputChange={onInputChangeHandler}
-          />
-          <TouchableOpacity
-            onPress={()=>handleSearch()}
-          >
-            <Text style={styles.button}>Search</Text>
-          </TouchableOpacity>
-        </View>
+        <InputSearch
+          message="Enter what you want to Search"
+          titleButton="Search"
+          onHandleSearch={onHandleSearch}
+        />
       ) : (
         <FlatList
           data={list}
@@ -120,34 +106,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center"
   },
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  button: {
-    color: COLORS.redMarvel,
-    marginVertical: 20,
-    paddingTop: 10,
-    fontFamily: 'ComicBook',
-    fontSize:24,
-  },
-  containerSearch: {
-    justifyContent: "center",
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 8
-    },
-    shadowOpacity: 0.44,
-    shadowRadius: 10.32,
-    elevation: 16,
-    backgroundColor: "white",
-    marginHorizontal: 20,
-    borderRadius: 10
-  }
 });
 
 export default ListScreen;
