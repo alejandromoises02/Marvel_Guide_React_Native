@@ -45,7 +45,7 @@ const FavoritesScreen = ({ navigation }) => {
           />
         </ImageBackground>
       ) : (
-        <Text>No tienes favoritos</Text>
+        <Text style={styles.noFavorites}>No favorites yet</Text>
       )}
     </>
   );
@@ -55,6 +55,12 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     justifyContent: "center"
+  },
+  noFavorites:{
+    alignSelf: "center",
+    justifyContent: "center",
+    fontFamily:"Badaboom",
+    fontSize:24
   }
 });
 

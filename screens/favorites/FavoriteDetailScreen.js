@@ -13,10 +13,9 @@ import { COLORS } from "../../constants/color";
 import { Ionicons } from "@expo/vector-icons";
 
 //sql
-import { insertFavorite, fetchFavorite } from "../../db";
+import { insertFavorite, fetchFavorite, deleteFavorite } from "../../db";
 
 const FavoriteDetailScreen = ({ navigation, route }) => {
-
   const item = route.params.item;
 
   const [favoritesMark, setFavoritesMark] = useState(false);
@@ -26,12 +25,13 @@ const FavoriteDetailScreen = ({ navigation, route }) => {
     if (!favoritesMark) {
       insertFavorite(item);
       setFavoritesMark(true);
-    }else {
-      Alert.alert(
-        "Has already been added to your favorites",
-        "You can see it in the Favorites section",
-        [{ text: "OK" }]
-      );
+    } else {
+      deleteFavorite(item.id)
+        .then((data) => console.log(data))
+        .catch((e) => {
+          console.log(e);
+        });
+      setFavoritesMark(false);
     }
   };
 
@@ -41,6 +41,7 @@ const FavoriteDetailScreen = ({ navigation, route }) => {
       favorites = result.rows._array;
       setFavoritesMark(favorites.some((favorite) => favorite.id == item.id));
       if (favoritesMark) setIconName("md-bookmark");
+      else setIconName("md-bookmark-outline");
     });
 
     navigation.setOptions({

@@ -15,6 +15,7 @@ const RegisterScreen = () => {
     inputValues: {
       email: "",
       password: "",
+      name:"",
     },
     inputValidities: {
       email: false,
@@ -26,7 +27,7 @@ const RegisterScreen = () => {
   const handleSignUp = () => {
     if (formState.formIsValid) {
       dispatch(
-        signup(formState.inputValues.email, formState.inputValues.password)
+        signup(formState.inputValues.email, formState.inputValues.password, formState.inputValues.name)
       );
     } else {
       Alert.alert("Invalid form", "Enter email and valid user", [
@@ -77,6 +78,14 @@ const RegisterScreen = () => {
           errorText="The password must be at least 8 characters"
           required
           minLength={8}
+          onInputChange={onInputChangeHandler}
+        />
+        <Input
+          id="name"
+          label="Name"
+          secureTextEntry
+          autoCapitalize="none"
+          required
           onInputChange={onInputChangeHandler}
         />
         <Button

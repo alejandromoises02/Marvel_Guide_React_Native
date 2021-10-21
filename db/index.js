@@ -34,6 +34,18 @@ export const insertFavorite = ( item ) => {
   })
 }
 
+export const deleteFavorite = ( id ) => {
+  return new Promise((resolve, reject) => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        `DELETE FROM favorite WHERE id = ${id}`,
+        (_, result) => resolve(result),
+        (_, error) => reject(error),
+      )
+    })
+  })
+}
+
 export const fetchFavorite = () => {
   return new Promise((resolve, reject) => {
     db.transaction((tx) => {
