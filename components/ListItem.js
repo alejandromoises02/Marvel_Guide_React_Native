@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 3,
     elevation: 3,
-    backgroundColor: COLORS.redSecondMarvel,
+    backgroundColor: COLORS.redThirdMarvel,
   },
   titleContainer:{
     flex: 2,

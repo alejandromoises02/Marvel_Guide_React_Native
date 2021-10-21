@@ -6,6 +6,7 @@ import { selectCategory } from "../../store/actions/category.actions";
 import { BACK_IMAGE } from "../../constants/backImage";
 import { clearList } from "../../store/actions/list.actions";
 import { useFocusEffect } from "@react-navigation/native";
+import HeaderList from "../../components/HeaderList";
 
 const GuideScreen = ({ navigation }) => {
 
@@ -40,6 +41,7 @@ const GuideScreen = ({ navigation }) => {
         keyExtractor={(item) => item.id}
         renderItem={renderGridList}
         numColumns={1}
+        ListHeaderComponent={<HeaderList />}
       />
     </ImageBackground>
   );
