@@ -30,9 +30,12 @@ export const clearList = () => {
 };
 
 
-export const selectList = (categoryID, startSearch) => {
+export const selectList = (categoryID, startSearch, related, idRelated) => {
   let list = [];
   let search = "";
+  let popularQuery = "";
+
+  
   if (startSearch != "") {
     search =
       categoryID == "characters" || categoryID == "events"
@@ -40,11 +43,22 @@ export const selectList = (categoryID, startSearch) => {
         : `titleStartsWith=${startSearch}&`;
   }
 
+  if(categoryID == 'charactersPopular') {
+    popularQuery = 'comics=30090&';
+    categoryID = 'characters';
+  }else if(categoryID == 'comicsPopular') {
+    popularQuery = 'characters=1009165&';
+    categoryID = 'comics';
+  };
+
+  let reladetQuery = related ? `/${idRelated}/${related}` : "";
+
+
   if (categoryID !== undefined) {
     return (dispatch) => {
       try {
         fetch(
-          `${URL_BASE_API}${categoryID}?${search}limit=20&offset=0&ts=1&apikey=${API_KEY_PUBLIC}&hash=${HASH}`
+          `${URL_BASE_API}${categoryID}${reladetQuery}?${search}${popularQuery}limit=20&offset=0&ts=1&apikey=${API_KEY_PUBLIC}&hash=${HASH}`
         )
           .then((response) => response.json())
           .then((data) => {
@@ -85,7 +99,7 @@ export const selectList = (categoryID, startSearch) => {
 
 export const addItemList = (categoryID, startSearch, page) => {
   let list = [];
-
+  let popularQuery = "";
   let search = "";
   if (startSearch != "") {
     search =
@@ -94,10 +108,18 @@ export const addItemList = (categoryID, startSearch, page) => {
         : `titleStartsWith=${startSearch}&`;
   }
 
+  if(categoryID == 'charactersPopular') {
+    popularQuery = 'comics=30090&';
+    categoryID = 'characters';
+  }else if(categoryID == 'comicsPopular') {
+    popularQuery = 'characters=1009165&';
+    categoryID = 'comics';
+  };
+
   return (dispatch) => {
     try {
       fetch(
-        `${URL_BASE_API}${categoryID}?${search}limit=20&offset=${
+        `${URL_BASE_API}${categoryID}?${search}${popularQuery}limit=20&offset=${
           page * 20
         }&ts=1&apikey=${API_KEY_PUBLIC}&hash=${HASH}`
       )

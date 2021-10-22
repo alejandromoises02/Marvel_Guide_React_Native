@@ -8,7 +8,7 @@ import { useNavigation } from "@react-navigation/core";
 //sql
 import { insertFavorite, fetchFavorite, deleteFavorite } from "../db/index";
 
-const DetailComponent = ({ item }) => {
+const DetailComponent = ({ item, handlerRelated }) => {
   const navigation = useNavigation();
   const [favoritesMark, setFavoritesMark] = useState(false);
   const [iconName, setIconName] = useState("md-bookmark-outline");
@@ -48,7 +48,7 @@ const DetailComponent = ({ item }) => {
     });
   }, [navigation, item, favoritesMark, iconName]);
 
-  return <RenderItem item={item} />;
+  return <RenderItem item={item} handlerRelated={handlerRelated} />;
 };
 
 export default DetailComponent;

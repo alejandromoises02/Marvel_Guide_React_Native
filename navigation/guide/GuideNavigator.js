@@ -10,7 +10,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import GuideScreen from "../../screens/guide/GuideScreen";
 import ListScreen from "../../screens/guide/ListScreen";
 import DetailScreen from "../../screens/guide/DetailScreen";
-
+import RelatedScreen from "../../screens/guide/RelatedScreen";
+import RelatedDetailScreen from "../../screens/guide/RelatedDetailScreen"
 //Colors
 import { COLORS } from "../../constants/color";
 
@@ -19,7 +20,9 @@ const Stack = createNativeStackNavigator();
 const ROUTES = {
   Home: "Home",
   List: "List",
-  Detail: "Detail"
+  Detail: "Detail",
+  Related: "Related",
+  RelatedDetail: "RelatedDetail",
 };
 
 const GuideNavigator = () => (
@@ -56,6 +59,20 @@ const GuideNavigator = () => (
         title: "Detail"
       }}
       component={DetailScreen}
+    />
+    <Stack.Screen
+      name={ROUTES.Related}
+      options={({ route }) => ({
+        title: route.params.name
+      })}
+      component={RelatedScreen}
+    />
+    <Stack.Screen
+      name={ROUTES.RelatedDetail}
+      options={{
+        title: "RelatedDetail"
+      }}
+      component={RelatedDetailScreen}
     />
   </Stack.Navigator>
 );

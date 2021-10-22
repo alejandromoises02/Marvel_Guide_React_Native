@@ -7,6 +7,9 @@ import ListReducer from './reducers/list.reducer';
 import ItemReducer from './reducers/item.reducer';
 import AuthReducer from './reducers/auth.reducer';
 import PopularsReducer from './reducers/populars.reducer';
+import RelatedReducer from './reducers/related.reducer';
+import ItemRelatedReducer from './reducers/itemRelated.reducer';
+import categoryRelatedReducer from './reducers/categoryRelated.reducer';
 
 const RootReducer = combineReducers({
     categories: CategoryReducer,
@@ -14,6 +17,9 @@ const RootReducer = combineReducers({
     item: ItemReducer,
     auth: AuthReducer,
     populars: PopularsReducer,
+    related: RelatedReducer,
+    itemRelated: ItemRelatedReducer,
+    categoriesRelated: categoryRelatedReducer,
 });
 
 export default createStore(RootReducer, applyMiddleware(thunk))

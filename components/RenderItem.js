@@ -1,11 +1,17 @@
 import React, { useEffect, useLayoutEffect } from "react";
-import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  ScrollView,
+  TouchableOpacity
+} from "react-native";
 
 //constants
 import { COLORS } from "../constants/color";
 
-const RenderItem = ({ item }) => {
-
+const RenderItem = ({ item, handlerRelated }) => {
   return (
     <View style={styles.RenderItem}>
       <ScrollView style={styles.scrollArea}>
@@ -20,9 +26,11 @@ const RenderItem = ({ item }) => {
           <Text style={styles.description}>{item.description}</Text>
         </View>
       </ScrollView>
-      <TouchableOpacity>
-        <Text style={styles.button}>{item.buttonTitle}</Text>
-      </TouchableOpacity>
+      {item.buttonTitle != "" && (
+        <TouchableOpacity onPress={() => handlerRelated(item)}>
+          <Text style={styles.button}>{item.buttonTitle}</Text>
+        </TouchableOpacity>
+      )}
     </View>
   );
 };

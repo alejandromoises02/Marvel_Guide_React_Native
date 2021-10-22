@@ -1,9 +1,9 @@
 //native
-import React, { useEffect, useCallback } from "react";
+import React, { useCallback } from "react";
 import { StyleSheet, ImageBackground } from "react-native";
 //redux
 import { useSelector, useDispatch } from "react-redux";
-import { filteredItem, clearItem } from "../../store/actions/item.actions";
+import { filteredItem, clearItem } from "../../store/actions/itemRelated.actions";
 import { selectList } from "../../store/actions/related.action";
 //components
 import DetailComponent from "../../components/DetailComponent";
@@ -14,9 +14,9 @@ import { useFocusEffect } from "@react-navigation/native";
 
 const DetailScreen = ({ navigation }) => {
   const dispatch = useDispatch();
-  const categoryID = useSelector((state) => state.categories.selectedID);
-  const itemID = useSelector((state) => state.list.selectedID);
-  const item = useSelector((state) => state.item.item); 
+  const categoryID = useSelector((state) => state.categoriesRelated.selectedID);
+  const itemID = useSelector((state) => state.related.selectedID);
+  const item = useSelector((state) => state.itemRelated.item); 
 
   /*useEffect(() => {
     dispatch(filteredItem(categoryID, itemID));

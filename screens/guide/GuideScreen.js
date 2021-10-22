@@ -2,7 +2,7 @@ import React, {useEffect,useCallback} from "react";
 import { FlatList, StyleSheet, ImageBackground } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import GridList from "../../components/GridList";
-import { selectCategory } from "../../store/actions/category.actions";
+import { selectCategory } from "../../store/actions/categoryRelated.actions";
 import { BACK_IMAGE } from "../../constants/backImage";
 import { clearList } from "../../store/actions/list.actions";
 import { useFocusEffect } from "@react-navigation/native";
