@@ -1,8 +1,11 @@
+//react
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+//navigate
 import { NavigationContainer } from "@react-navigation/native";
 import TabNavigator from './tab/TabNavigator'
 import AuthNavigator from './auth/AuthNavigator';
+//redux
+import { useSelector, useDispatch } from 'react-redux';
 import { initAuthentication } from '../store/actions/auth.action';
 
 const MainNavigator = () => {

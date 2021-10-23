@@ -1,16 +1,15 @@
-//native
+//react
 import React from "react";
+//native
 import { StyleSheet, View, Text } from "react-native";
-
-//tab navigator
-import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+//expo
+import { BlurView } from "expo-blur";
 import { Ionicons } from "@expo/vector-icons";
+//navigate
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import GuideNavigator from "../guide/GuideNavigator";
 import FavoritesNavigator from "../favorites/FavoritesNavigator";
 import UserNavigator from "../user/UserNavigator";
-import { BlurView } from "expo-blur";
-
 //color
 import { COLORS } from "../../constants/color";
 

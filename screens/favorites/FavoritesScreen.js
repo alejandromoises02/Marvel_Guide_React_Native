@@ -1,12 +1,15 @@
+//react
 import React, { useCallback, useState } from "react";
+//native
 import { FlatList, StyleSheet, ImageBackground, Text } from "react-native";
-
 //navigation
 import { useFocusEffect } from '@react-navigation/native';
-
+//sql
 import { fetchFavorite } from '../../db/index'
-import { BACK_IMAGE } from "../../constants/backImage";
+//components
 import ListItem from "../../components/ListItem";
+//constants
+import { BACK_IMAGE } from "../../constants/backImage";
 
 const FavoritesScreen = ({ navigation }) => {
   const [favorites, setFavorites] = useState([])

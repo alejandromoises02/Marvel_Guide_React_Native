@@ -1,11 +1,7 @@
+//react
 import React from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  ImageBackground
-} from "react-native";
+//native
+import { View, Text, TouchableOpacity, StyleSheet, ImageBackground } from "react-native";
 
 const GridList = ({ item, onSelected }) => {
   return (

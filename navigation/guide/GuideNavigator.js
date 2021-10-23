@@ -1,11 +1,9 @@
-//React-Native
+//react
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+//native
 import { Platform } from "react-native";
-
 //Navigation
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
 //Screens
 import GuideScreen from "../../screens/guide/GuideScreen";
 import ListScreen from "../../screens/guide/ListScreen";

@@ -1,7 +1,11 @@
+//react
 import React from "react";
+//native
 import { View, StyleSheet, TouchableOpacity, Text, ImageBackground } from "react-native";
+//redux
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../store/actions/auth.action";
+//constants
 import { BACK_IMAGE } from "../../constants/backImage";
 import { COLORS } from "../../constants/color";
 

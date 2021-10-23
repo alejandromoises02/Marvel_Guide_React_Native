@@ -1,12 +1,15 @@
+//react
 import React from "react";
+//native
 import { FlatList, StyleSheet } from "react-native";
-
+//redux
 import { useSelector, useDispatch } from "react-redux";
 import { selectCategory } from "../store/actions/category.actions";
-
+//components
 import ListItem from "./ListItem";
+//constants
 import { COLORS } from "../constants/color";
-
+//navigate
 import { useNavigation } from "@react-navigation/core";
 
 const HeaderList = () => {

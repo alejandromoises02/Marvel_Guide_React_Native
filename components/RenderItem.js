@@ -1,13 +1,7 @@
-import React, { useEffect, useLayoutEffect } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  ScrollView,
-  TouchableOpacity
-} from "react-native";
-
+//react
+import React from "react";
+//native
+import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from "react-native";
 //constants
 import { COLORS } from "../constants/color";
 

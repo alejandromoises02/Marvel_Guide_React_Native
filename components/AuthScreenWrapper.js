@@ -1,6 +1,10 @@
+//react
 import React from 'react';
+//native
 import { StyleSheet, View, Text, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
+//navigate
 import { useNavigation } from '@react-navigation/native';
+//constants
 import { COLORS } from '../constants/color';
 
 const AuthScreenWrapper = ({ children, title, message, buttonText, buttonPath }) => {

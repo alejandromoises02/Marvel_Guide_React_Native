@@ -1,12 +1,17 @@
+//react
 import React, { useCallback, useReducer } from "react";
+//native
 import { Alert, StyleSheet, ImageBackground } from "react-native";
 import { Button } from "react-native-elements";
+//redux
 import { useDispatch } from "react-redux";
 import AuthScreenWrapper from "../../components/AuthScreenWrapper";
-import { COLORS } from "../../constants/color";
 import { signup } from "../../store/actions/auth.action";
-import Input from "../../components/Input";
 import { formReducer, FORM_INPUT_UPDATE } from "./fromReducer";
+//components
+import Input from "../../components/Input";
+//constants
+import { COLORS } from "../../constants/color";
 import { BACK_IMAGE } from "../../constants/backImage";
 
 const RegisterScreen = () => {

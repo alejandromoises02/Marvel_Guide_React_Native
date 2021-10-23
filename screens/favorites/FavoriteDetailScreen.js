@@ -1,10 +1,12 @@
+//react
+import React from "react";
 //native
-import React, { useLayoutEffect, useState } from "react";
-import { StyleSheet, ImageBackground, Alert } from "react-native";
+import { StyleSheet, ImageBackground } from "react-native";
 //components
 import DetailComponent from "../../components/DetailComponent";
 //constants
 import { BACK_IMAGE } from "../../constants/backImage";
+
 const FavoriteDetailScreen = ({ navigation, route }) => {
   const item = route.params.item;
 

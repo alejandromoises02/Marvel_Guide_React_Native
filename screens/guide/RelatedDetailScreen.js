@@ -1,6 +1,9 @@
-//native
+//react
 import React, { useCallback } from "react";
+//native
 import { StyleSheet, ImageBackground } from "react-native";
+//navigation
+import { useFocusEffect } from "@react-navigation/native";
 //redux
 import { useSelector, useDispatch } from "react-redux";
 import { filteredItem, clearItem } from "../../store/actions/itemRelated.actions";
@@ -9,8 +12,6 @@ import { selectList } from "../../store/actions/related.action";
 import DetailComponent from "../../components/DetailComponent";
 //constants
 import { BACK_IMAGE } from "../../constants/backImage";
-//navigation
-import { useFocusEffect } from "@react-navigation/native";
 
 const DetailScreen = ({ navigation }) => {
   const dispatch = useDispatch();

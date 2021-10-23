@@ -1,26 +1,18 @@
+//react
+import React, { useCallback, useState, useLayoutEffect } from "react";
 //native
-import React, { useCallback, useState, useLayoutEffect, useEffect } from "react";
-import {
-  FlatList,
-  StyleSheet,
-  ImageBackground,
-} from "react-native";
+import { FlatList, StyleSheet, ImageBackground, } from "react-native";
+//navigation
+import { useFocusEffect } from "@react-navigation/native";
+import { Ionicons } from "@expo/vector-icons";
 //redux
 import { useSelector, useDispatch } from "react-redux";
-import {
-  selectList,
-  addItemList,
-  selectItem,
-  selectSearchList
-} from "../../store/actions/list.actions";
+import { selectList, addItemList, selectItem, selectSearchList } from "../../store/actions/list.actions";
 //components
 import ListItem from "../../components/ListItem";
 import InputSearch from "../../components/InputSearch";
 //constants
 import { BACK_IMAGE } from "../../constants/backImage";
-//navigation
-import { useFocusEffect } from "@react-navigation/native";
-import { Ionicons } from "@expo/vector-icons";
 
 const ListScreen = ({ navigation }) => {
   const dispatch = useDispatch();

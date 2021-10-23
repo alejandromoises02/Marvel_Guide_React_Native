@@ -1,5 +1,8 @@
+//react
 import React, { useState } from "react";
+//native
 import { StyleSheet, View, Text, TextInput, TouchableOpacity } from "react-native";
+//constants
 import { COLORS } from "../constants/color";
 
 const InputSearch = ({message,titleButton, onHandleSearch}) =>{

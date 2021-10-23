@@ -1,12 +1,18 @@
-import React, {useEffect,useCallback} from "react";
+//react
+import React, { useCallback } from "react";
+//native
 import { FlatList, StyleSheet, ImageBackground } from "react-native";
-import { useSelector, useDispatch } from "react-redux";
-import GridList from "../../components/GridList";
-import { selectCategory } from "../../store/actions/category.actions";
-import { BACK_IMAGE } from "../../constants/backImage";
-import { clearList } from "../../store/actions/list.actions";
+//navigate
 import { useFocusEffect } from "@react-navigation/native";
+//redux
+import { useSelector, useDispatch } from "react-redux";
+import { selectCategory } from "../../store/actions/category.actions";
+import { clearList } from "../../store/actions/list.actions";
+//components
+import GridList from "../../components/GridList";
 import HeaderList from "../../components/HeaderList";
+//constants
+import { BACK_IMAGE } from "../../constants/backImage";
 
 const GuideScreen = ({ navigation }) => {
 

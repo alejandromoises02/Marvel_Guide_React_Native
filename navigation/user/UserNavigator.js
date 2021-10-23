@@ -1,13 +1,11 @@
-//React-Native
+//react
 import React from "react";
+//native
 import { Platform } from "react-native";
-
-//Navigation
+//navigate
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
 //Screens
 import UserScreen from '../../screens/user/UserScreens'
-
 //Colors
 import { COLORS } from "../../constants/color";
 

@@ -1,24 +1,19 @@
-//Native
-import { StatusBar } from "expo-status-bar";
+//react
 import React from "react";
+//native
 import { StyleSheet } from "react-native";
-
+//Navigator
+import MainNavigator from './navigation';
 //redux
 import { Provider } from "react-redux";
 import store from "./store";
-
+//db
+import { init } from './db';
 //fonts
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
-
-//Navigator
-import MainNavigator from './navigation';
-
-//background
+//constants
 import { COLORS } from "./constants/color";
-
-//db
-import { init } from './db';
 
 init()
   .then(() => console.log('Database initialized'))

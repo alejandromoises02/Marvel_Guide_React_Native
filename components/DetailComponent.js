@@ -1,12 +1,12 @@
-//native
+//react
 import React, { useLayoutEffect, useState } from "react";
-//components
-import RenderItem from "./RenderItem";
 //navigation
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/core";
 //sql
 import { insertFavorite, fetchFavorite, deleteFavorite } from "../db/index";
+//components
+import RenderItem from "./RenderItem";
 
 const DetailComponent = ({ item, handlerRelated }) => {
   const navigation = useNavigation();

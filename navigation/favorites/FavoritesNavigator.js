@@ -1,14 +1,12 @@
-//React-Native
+//react
 import React from "react";
+//native
 import { Platform } from "react-native";
-
 //Navigation
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
 //Screens
 import FavoritesScreen from '../../screens/favorites/FavoritesScreen'
 import FavoriteDetailScreen from '../../screens/favorites/FavoriteDetailScreen'
-
 //Colors
 import { COLORS } from "../../constants/color";
 

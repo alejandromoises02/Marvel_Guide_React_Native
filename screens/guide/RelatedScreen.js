@@ -1,5 +1,6 @@
-//native
+//react
 import React from "react";
+//native
 import { FlatList, StyleSheet, ImageBackground } from "react-native";
 //redux
 import { useSelector, useDispatch } from "react-redux";

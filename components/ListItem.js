@@ -1,12 +1,8 @@
+//react
 import React from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  Image,
-} from 'react-native';
-
+//native
+import { View, Text, TouchableOpacity, StyleSheet, Image, } from 'react-native';
+//constants
 import { COLORS } from '../constants/color'
 
 const ListItem = ({ item, onSelected }) => {
