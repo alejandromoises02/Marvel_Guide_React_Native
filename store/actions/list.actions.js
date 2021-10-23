@@ -53,7 +53,6 @@ export const selectList = (categoryID, startSearch, related, idRelated) => {
 
   let reladetQuery = related ? `/${idRelated}/${related}` : "";
 
-
   if (categoryID !== undefined) {
     return (dispatch) => {
       try {

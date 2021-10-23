@@ -1,5 +1,4 @@
-import { FILTERED_ITEM } from '../actions/item.actions';
-import { CLEAR_ITEM } from '../actions/item.actions';
+import { FILTERED_ITEM, CLEAR_ITEM } from '../actions/item.actions';
 
 const initialState = {
     item: {},

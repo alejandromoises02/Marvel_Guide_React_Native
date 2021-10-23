@@ -1,14 +1,14 @@
-import { CATEGORIES } from '../../data/categories';
-import { SELECT_CATEGORY } from '../actions/category.actions';
+import { POPULARS } from '../../data/popular'
+import { SELECT_CATEGORY_RELATED } from '../actions/categoryRelated.actions';
 
 const initialState = {
-    list: CATEGORIES,
+    list: POPULARS,
     selectedID: null,
 };
 
 const categoryRelated = (state = initialState, action) =>{
     switch(action.type){
-        case SELECT_CATEGORY:
+        case SELECT_CATEGORY_RELATED:
             return {
                 ...state,
                 selectedID: action.payload,

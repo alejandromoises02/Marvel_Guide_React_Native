@@ -9,6 +9,7 @@ const initialState = {
 const CategoryReducer = (state = initialState, action) =>{
     switch(action.type){
         case SELECT_CATEGORY:
+            console.log("select_category");
             return {
                 ...state,
                 selectedID: action.payload,
