@@ -1,8 +1,8 @@
 import { URL_BASE_API, API_KEY_PUBLIC, HASH } from "../../constants/marvelApi";
 import ItemData from "../../models/ItemData";
 
-export const FILTERED_ITEM = "FILTERED_ITEM";
-export const CLEAR_ITEM = "CLEAR_ITEM";
+export const FILTERED_ITEM_RELATED = "FILTERED_ITEM_RELATED";
+export const CLEAR_ITEM_RELATED = "CLEAR_ITEM_RELATED";
 
 export const filteredItem = (categoryID, itemID) => {
   let item = {};
@@ -27,7 +27,7 @@ export const filteredItem = (categoryID, itemID) => {
     description = !description ? "Description not available" : description;
     let buttonTitle = "";
     let related = "";
-    if (pageCount) {
+    if (pageCount || pageCount == 0) {
       //format title for comic
       title = `${title} (${pageCount}pages)`;
       buttonTitle = "";
@@ -46,7 +46,7 @@ export const filteredItem = (categoryID, itemID) => {
 
     item = new ItemData(id, title, urlImage, description, buttonTitle , categoryID, related)
     dispatch({
-      type: FILTERED_ITEM,
+      type: FILTERED_ITEM_RELATED,
       item
     });
   };
@@ -54,7 +54,7 @@ export const filteredItem = (categoryID, itemID) => {
 
 export const clearItem = () => {
   return {
-    type: CLEAR_ITEM,
+    type: CLEAR_ITEM_RELATED,
     item: {}
   };
 };

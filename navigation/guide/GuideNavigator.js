@@ -70,7 +70,7 @@ const GuideNavigator = () => (
     <Stack.Screen
       name={ROUTES.RelatedDetail}
       options={{
-        title: "RelatedDetail"
+        title: "Detail"
       }}
       component={RelatedDetailScreen}
     />

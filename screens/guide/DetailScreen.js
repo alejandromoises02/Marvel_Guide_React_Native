@@ -4,7 +4,8 @@ import { StyleSheet, ImageBackground } from "react-native";
 //redux
 import { useSelector, useDispatch } from "react-redux";
 import { filteredItem, clearItem } from "../../store/actions/item.actions";
-import { selectList } from "../../store/actions/related.action";
+import { clearListRelated, selectList } from "../../store/actions/related.action";
+import { clearList } from "../../store/actions/list.actions";
 //components
 import DetailComponent from "../../components/DetailComponent";
 //constants
@@ -37,6 +38,8 @@ const DetailScreen = ({ navigation }) => {
   );
 
   const handlerRelated = (item) =>{
+    dispatch(clearList());
+    dispatch(clearListRelated());
     dispatch(selectList(item.categoryID, item.related, item.id));
     navigation.navigate("Related", {
       name: item.related

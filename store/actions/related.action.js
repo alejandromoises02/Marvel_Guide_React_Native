@@ -1,19 +1,19 @@
 import { URL_BASE_API, API_KEY_PUBLIC, HASH } from "../../constants/marvelApi";
 
-export const SELECT_LIST = "SELECT_LIST";
-export const SELECT_ITEM = "SELECT_ITEM";
-export const CLEAR_LIST = "CLEAR_LIST";
+export const SELECT_LIST_RELATED = "SELECT_LIST_RELATED";
+export const SELECT_ITEM_RELATED = "SELECT_ITEM_RELATED";
+export const CLEAR_LIST_RELATED = "CLEAR_LIST_RELATED";
 
 export const selectItem = (itemID) =>{
   return ({
-  type: SELECT_ITEM,
+  type: SELECT_ITEM_RELATED,
   payload: itemID,
 })
 }
 
-export const clearList = () => {
+export const clearListRelated = () => {
   return {
-    type: CLEAR_LIST,
+    type: CLEAR_LIST_RELATED,
     list: [],
     selectedID: null,
   };
@@ -58,7 +58,7 @@ export const selectList = (categoryID,related, idRelated) => {
               };
             });
             dispatch({
-              type: SELECT_LIST,
+              type: SELECT_LIST_RELATED,
               list
             });
           });
@@ -69,7 +69,7 @@ export const selectList = (categoryID,related, idRelated) => {
   } else {
     return (dispatch) => {
       dispatch({
-        type: SELECT_LIST,
+        type: SELECT_LIST_RELATED,
         list: []
       });
     };

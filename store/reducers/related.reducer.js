@@ -1,7 +1,7 @@
 import {
-    SELECT_LIST,
-    SELECT_ITEM,
-    CLEAR_LIST
+    SELECT_LIST_RELATED,
+    SELECT_ITEM_RELATED,
+    CLEAR_LIST_RELATED,
   } from "../actions/related.action";
   
   const initialState = {
@@ -11,17 +11,17 @@ import {
   
   const ListReducer = (state = initialState, action) => {
     switch (action.type) {
-      case SELECT_ITEM:
+      case SELECT_ITEM_RELATED:
         return {
           ...state,
           selectedID: action.payload
         };
-      case SELECT_LIST:
+      case SELECT_LIST_RELATED:
         return {
           ...state,
           list: action.list
         };
-      case CLEAR_LIST:
+      case CLEAR_LIST_RELATED:
         return {
           ...state,
           list: action.list,
