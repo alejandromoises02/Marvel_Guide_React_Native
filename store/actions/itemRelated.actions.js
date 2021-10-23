@@ -24,7 +24,7 @@ export const filteredItem = (categoryID, itemID) => {
     /////////////////////////////////////////////////////
     if (name != undefined && title == undefined) title = name;
     const urlImage = `${thumbnail.path}/portrait_uncanny.${thumbnail.extension}`;
-    description = !description ? "Description not available" : description;
+    description = !description ? `${title} is part of the Amazing Marvel Universe.` : description;
     let buttonTitle = "";
     let related = "";
     if (pageCount || pageCount == 0) {
