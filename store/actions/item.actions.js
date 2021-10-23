@@ -20,7 +20,6 @@ export const filteredItem = (categoryID, itemID) => {
     const data = await response.json();
     const result = data.data.results[0];
     let {id,title,name,description,thumbnail,pageCount,startYear,endYear} = result;
-    console.log(pageCount);
 
     /////////////////////////////////////////////////////
     if (name != undefined && title == undefined) title = name;
