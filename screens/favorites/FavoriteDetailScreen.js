@@ -7,7 +7,7 @@ import DetailComponent from "../../components/DetailComponent";
 //constants
 import { BACK_IMAGE } from "../../constants/backImage";
 
-const FavoriteDetailScreen = ({ navigation, route }) => {
+const FavoriteDetailScreen = ({ route }) => {
   const item = route.params.item;
 
   return (

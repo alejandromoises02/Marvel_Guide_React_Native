@@ -1,7 +1,7 @@
 //react
 import React, { useCallback } from "react";
 //native
-import { StyleSheet, ImageBackground } from "react-native";
+import { StyleSheet, ImageBackground, ActivityIndicator } from "react-native";
 //navigation
 import { useFocusEffect } from "@react-navigation/native";
 //redux
@@ -12,6 +12,7 @@ import { selectList } from "../../store/actions/related.action";
 import DetailComponent from "../../components/DetailComponent";
 //constants
 import { BACK_IMAGE } from "../../constants/backImage";
+import { COLORS } from "../../constants/color";
 
 const DetailScreen = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -50,7 +51,11 @@ const DetailScreen = ({ navigation }) => {
       resizeMode="cover"
       style={styles.container}
     >
-      <DetailComponent item={item} handlerRelated={handlerRelated} />
+      {!item ? (
+        <ActivityIndicator size="large" color={COLORS.redThirdMarvel} />
+      ) : (
+        <DetailComponent item={item} handlerRelated={handlerRelated} />
+      )}
     </ImageBackground>
   );
 };

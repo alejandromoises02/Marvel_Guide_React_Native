@@ -1,15 +1,21 @@
 //react
 import React from "react";
 //native
-import { FlatList, StyleSheet, ImageBackground } from "react-native";
+import {
+  FlatList,
+  StyleSheet,
+  ImageBackground,
+  ActivityIndicator
+} from "react-native";
 //redux
 import { useSelector, useDispatch } from "react-redux";
 import { selectItem } from "../../store/actions/related.action";
-import {selectCategory} from "../../store/actions/categoryRelated.actions"
+import { selectCategory } from "../../store/actions/categoryRelated.actions";
 //components
 import ListItem from "../../components/ListItem";
 //constants
 import { BACK_IMAGE } from "../../constants/backImage";
+import { COLORS } from "../../constants/color";
 
 const RelatedScreen = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -33,11 +39,15 @@ const RelatedScreen = ({ navigation }) => {
       resizeMode="cover"
       style={styles.image}
     >
-      <FlatList
-        data={list}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={renderItemList}
-      />
+      {list.length == 0 ? (
+        <ActivityIndicator size="large" color={COLORS.redThirdMarvel} />
+      ) : (
+        <FlatList
+          data={list}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={renderItemList}
+        />
+      )}
     </ImageBackground>
   );
 };

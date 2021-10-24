@@ -1,23 +1,27 @@
 //native
-import React, { useEffect, useCallback } from "react";
-import { StyleSheet, ImageBackground } from "react-native";
+import React, { useCallback } from "react";
+import { StyleSheet, ImageBackground, ActivityIndicator } from "react-native";
 //navigation
 import { useFocusEffect } from "@react-navigation/native";
 //redux
 import { useSelector, useDispatch } from "react-redux";
 import { filteredItem, clearItem } from "../../store/actions/item.actions";
-import { clearListRelated, selectList } from "../../store/actions/related.action";
+import {
+  clearListRelated,
+  selectList
+} from "../../store/actions/related.action";
 import { clearList } from "../../store/actions/list.actions";
 //components
 import DetailComponent from "../../components/DetailComponent";
 //constants
 import { BACK_IMAGE } from "../../constants/backImage";
+import { COLORS } from "../../constants/color";
 
 const DetailScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const categoryID = useSelector((state) => state.categories.selectedID);
   const itemID = useSelector((state) => state.list.selectedID);
-  const item = useSelector((state) => state.item.item); 
+  const item = useSelector((state) => state.item.item);
 
   /*useEffect(() => {
     dispatch(filteredItem(categoryID, itemID));
@@ -37,14 +41,14 @@ const DetailScreen = ({ navigation }) => {
     }, [])
   );
 
-  const handlerRelated = (item) =>{
+  const handlerRelated = (item) => {
     dispatch(clearList());
     dispatch(clearListRelated());
     dispatch(selectList(item.categoryID, item.related, item.id));
     navigation.navigate("Related", {
       name: item.related
     });
-  }
+  };
 
   return (
     <ImageBackground
@@ -52,7 +56,11 @@ const DetailScreen = ({ navigation }) => {
       resizeMode="cover"
       style={styles.container}
     >
-      <DetailComponent item={item} handlerRelated={handlerRelated} />
+      {!item ? (
+        <ActivityIndicator size="large" color={COLORS.redThirdMarvel} />
+      ) : (
+        <DetailComponent item={item} handlerRelated={handlerRelated} />
+      )}
     </ImageBackground>
   );
 };

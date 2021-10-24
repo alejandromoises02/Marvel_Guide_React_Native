@@ -1,7 +1,13 @@
 //react
 import React, { useCallback, useState, useLayoutEffect } from "react";
 //native
-import { FlatList, StyleSheet, ImageBackground, } from "react-native";
+import {
+  FlatList,
+  StyleSheet,
+  ImageBackground,
+  ActivityIndicator,
+  Text
+} from "react-native";
 //navigation
 import { useFocusEffect } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
@@ -13,6 +19,7 @@ import ListItem from "../../components/ListItem";
 import InputSearch from "../../components/InputSearch";
 //constants
 import { BACK_IMAGE } from "../../constants/backImage";
+import { COLORS } from "../../constants/color";
 
 const ListScreen = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -25,8 +32,8 @@ const ListScreen = ({ navigation }) => {
 
   useFocusEffect(
     useCallback(() => {
-      dispatch(selectList(categoryID,inputSearch));
-    }, [categoryID,inputSearch])
+      dispatch(selectList(categoryID, inputSearch));
+    }, [categoryID, inputSearch])
   );
 
   const handlerSearch = () => {
@@ -62,8 +69,8 @@ const ListScreen = ({ navigation }) => {
     <ListItem item={item} onSelected={handleSelected} />
   );
 
-  const onHandleSearch = text => {
-    dispatch(selectList(categoryID , text));
+  const onHandleSearch = (text) => {
+    dispatch(selectList(categoryID, text));
     setActiveSearch(false);
     dispatch(selectSearchList(text));
   };
@@ -80,8 +87,12 @@ const ListScreen = ({ navigation }) => {
           titleButton="Search"
           onHandleSearch={onHandleSearch}
         />
-      ) : (
-        <FlatList
+      ) : list.length == 0 ? (
+        <ActivityIndicator size="large" color={COLORS.redThirdMarvel} />
+      ) :(
+        list[0] == "NODATA" 
+        ? <Text style={styles.notFound}>Not found</Text>
+        :<FlatList
           data={list}
           keyExtractor={(item) => item.id.toString()}
           renderItem={renderItemList}
@@ -98,6 +109,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center"
   },
+  notFound:{
+    alignSelf: "center",
+    justifyContent: "center",
+    fontFamily:"Badaboom",
+    fontSize:24,
+    color: COLORS.redMarvel,
+  }
 });
 
 export default ListScreen;

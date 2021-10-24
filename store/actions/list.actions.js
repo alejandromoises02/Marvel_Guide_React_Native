@@ -77,6 +77,7 @@ export const selectList = (categoryID, startSearch, related, idRelated) => {
                 urlImage
               };
             });
+            if(list.length == 0) list = ["NODATA"];
             dispatch({
               type: SELECT_LIST,
               list
