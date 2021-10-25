@@ -3,16 +3,16 @@
 **APK**: https://exp-shell-app-assets.s3.us-west-1.amazonaws.com/android/%40alejandromoises02/marvel_guide-a28cc640e7aa4b229ba7ef4ccb91977b-signed.apk
 
 **Video Demo**
-![Demonstration web](./assets/demo/marvelGuideVideoDemo.gif)
+[Demonstration web](./assets/demo/marvelGuideVideoDemo.gif)
 
 
 *Marvel Guide Unlimited* es una guia de personajes, comics, series y eventos Marvel, desarrollado bajo React Native.
 
-Realizado por: Alejandro Fernandez ![github](https://github.com/alejandromoises02)
+Realizado por: Alejandro Fernandez [github](https://github.com/alejandromoises02)
 
 ### CARACTERISTICAS
 
-- Consume principalmente la ![MarvelAPI](https://developer.marvel.com/) para obtener listado y caracteristicas de personajes, comics, series y eventos.
+- Consume principalmente la [MarvelAPI](https://developer.marvel.com/) para obtener listado y caracteristicas de personajes, comics, series y eventos.
 - Filtrado por **categorías** de items.
 - Login con Auth **Firebase**.
 - Logout para cerrar sesión.
@@ -34,7 +34,7 @@ Realizado por: Alejandro Fernandez ![github](https://github.com/alejandromoises0
 
 ### COMO LO PRUEBO?
 
-Puedes descargar el ![APK](https://exp-shell-app-assets.s3.us-west-1.amazonaws.com/android/%40alejandromoises02/marvel_guide-a28cc640e7aa4b229ba7ef4ccb91977b-signed.apk) e instalarlo en tu celular o simulador 
+Puedes descargar el [APK](https://exp-shell-app-assets.s3.us-west-1.amazonaws.com/android/%40alejandromoises02/marvel_guide-a28cc640e7aa4b229ba7ef4ccb91977b-signed.apk) e instalarlo en tu celular o simulador 
 
 
 Si quieres probar el repo sin instalar el APK puedes seguir los siguientes paso:
