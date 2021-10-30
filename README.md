@@ -3,7 +3,7 @@
 **APK**: https://exp-shell-app-assets.s3.us-west-1.amazonaws.com/android/%40alejandromoises02/marvel_guide-a28cc640e7aa4b229ba7ef4ccb91977b-signed.apk
 
 **Video Demo**
-![Demonstration web](./assets/demo/marvelGuideVideoDemo.gif)
+![Demonstration web](./assets/demo/marvelGuideVideoDemoA.gif)
 
 
 *Marvel Guide Unlimited* es una guia de personajes, comics, series y eventos Marvel, desarrollado bajo React Native.
