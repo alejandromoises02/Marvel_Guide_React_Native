@@ -26,7 +26,7 @@ Realizado por: Alejandro Fernandez [github](https://github.com/alejandromoises02
 
 ### HERRAMIENTAS UTILIZADAS 
 
-- **React Natibe**
+- **React Native**
 - **Marvel API**
 - **Firebase** 
 - **SQL** 
